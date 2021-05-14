@@ -1,12 +1,20 @@
-# Getting Started with Create React App
+# Projeto de camping
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Parte do Front-End
 
-## Available Scripts
+Esse front-end está sendo desenvolvido em react
 
-In the project directory, you can run:
+## Começando o projeto
+
+basta fazer o git clone e instalar as dependendias usando
+
+### yarn install
+
+em seguida rode o programa com
 
 ### `yarn start`
+
+## segue abaixo outras dicas criado automaticamente pelo React
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
