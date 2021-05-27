@@ -36,6 +36,10 @@ export const CampoLocal = styled.section`
   flex-direction: row;
   height:20%;
   padding-left: 30px;
+
+  a {
+    cursor: pointer;
+  }
 `;
 
 

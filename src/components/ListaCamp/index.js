@@ -12,34 +12,42 @@ import {
 // assets
 import imageCard from '../../assets/images/imageCard.jpg'
 
-const ListaCamp = () => (
-  <Cardbody>
-    <ImagemTitle src={imageCard} />
+const ListaCamp = (props) => (
+  <div>
+    {props.locais.map(local => (
 
-    <BodyInformation>
-      <CampoInfo>
-        <section>
-          <h2><i class="fa fa-home" aria-hidden="true"></i> &nbsp; Grande partes </h2>
+      <Cardbody key={local.id} >
+        <ImagemTitle src={local.imagem} />
 
-          <p>
-            <i class="fa fa-file-text" aria-hidden="true"></i> &nbsp;
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing .
-          </p>
+        <BodyInformation>
+          <CampoInfo>
+            <section>
+              <h2><i className="fa fa-home" aria-hidden="true"></i> &nbsp; {local.nome} </h2>
 
-          <h4><i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp; Rua Domingos de amoráis, nº334 Cep: 23434-544</h4>
-        </section>
-      </CampoInfo>
+              <p>
+                <i className="fa fa-file-text" aria-hidden="true"></i> &nbsp;
+                { local.complemento }
+              </p>
 
-      <CampoLocal>
-        <h4> <i class="fa fa-map" aria-hidden="true"></i> &nbsp; São Paulo </h4>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <h4> <i class="fa fa-map" aria-hidden="true"></i> &nbsp; Juquitiba </h4>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <h4> <i class="fa fa-picture-o" aria-hidden="true"></i> &nbsp; Fotos </h4>
-      </CampoLocal>
-    </BodyInformation>
+              <h4><i className="fa fa-map-marker" aria-hidden="true"></i> &nbsp; {local.logradouro}, nº{local.numero} Cep: 23434-544</h4>
+            </section>
+          </CampoInfo>
 
-  </Cardbody>
+          <CampoLocal>
+            <h4> <i className="fa fa-map" aria-hidden="true"></i> &nbsp; {local.estado} </h4>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <h4> <i className="fa fa-map" aria-hidden="true"></i> &nbsp; {local.cidade} </h4>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <h4> <i className="fa fa-picture-o" aria-hidden="true"></i> &nbsp; <a onClick={props.abrirModal()} > Fotos </a> </h4>
+          </CampoLocal>
+        </BodyInformation>
+
+      </Cardbody>
+
+    ))}
+  </div>
+
+
 );
 
 export default ListaCamp;

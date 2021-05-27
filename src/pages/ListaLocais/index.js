@@ -4,6 +4,7 @@ import { MainLista, CampoPesquisa, Form, CompoListagem } from './styles'
 
 // Components
 import ListaCamp from '../../components/ListaCamp'
+import ModalComponent from '../../components/ModalComponent'
 
 class ListaLocais extends Component {
 
@@ -39,12 +40,24 @@ class ListaLocais extends Component {
         numero: '234',
         complemento: 'rua de cima Sitio muito bom para acampamento, tem area rústica e muito lugar pata todos bruncarem, tem piscina e lagos naturais, possui cachoeiras e trilha de 10km, possui barcos para brincadeiras'
       }
-    ]
+    ],
+
+    openModal: false
+  }
+
+  openModal = async () => {
+    // console.log('passou')
+    this.setState({openModal: !this.state.openModal})
+    // console.log(this.state.openModal)
   }
 
   render() {
+
     return (
       <Fragment>
+        <ModalComponent statuModal={this.state.openModal} funcOpen={() => this.openModal} >
+
+        </ModalComponent>
         <MainLista>
           <div className="container">
               <CampoPesquisa>
@@ -81,15 +94,15 @@ class ListaLocais extends Component {
               <hr/>
 
               <CompoListagem>
-                <ListaCamp  />
-                <ListaCamp  />
-                <ListaCamp  />
+                <ListaCamp locais={this.state.locaisDisponiveis} abrirModal={() => this.openModal} />
               </CompoListagem>
 
 
 
           </div>
         </MainLista>
+
+
       </Fragment>
     )
   }
