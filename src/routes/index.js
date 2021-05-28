@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // páginas
 import Main from '../pages/Inicio/main';
 import ListaLocais from '../pages/ListaLocais'
+import DetalheLocal from '../pages/DeltalheLocal'
 
 import Headers from '../components/headers'
 import Footer from '../components/footer'
@@ -24,6 +25,7 @@ const Routes = () => (
       <Switch>
         <Route exact path="/" component={Main} />
         <Route exact path="/locais" component={ListaLocais} />
+        <Route exact path="/detalhe" component={DetalheLocal} />
 
         <Route component={NotFound} />
       </Switch>
