@@ -84,3 +84,9 @@ export const CompoListagem = styled.section`
   padding: 30px;
 
 `
+export const SliderDiv = styled.div`
+  img {
+    width: 100%;
+    height: 550px;
+  }
+`
