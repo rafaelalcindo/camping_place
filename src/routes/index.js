@@ -12,6 +12,8 @@ import NotFound from '../components/NotFound'
 import GlobalStyle from '../globals/styles'
 
 import 'font-awesome/css/font-awesome.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Routes = () => (
   <BrowserRouter>

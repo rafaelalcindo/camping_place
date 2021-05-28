@@ -18,7 +18,7 @@ export const ModalContent = styled.div`
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 50%;
 `
 
 export const CloseModal = styled.section`
@@ -32,4 +32,7 @@ export const CloseModal = styled.section`
     font-size: 34px;
     font-weight: 600;
   }
+`
+export const BodyModal = styled.section`
+
 `
