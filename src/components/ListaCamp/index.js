@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // styles
 import {
@@ -22,7 +23,7 @@ const ListaCamp = (props) => (
         <BodyInformation>
           <CampoInfo>
             <section>
-              <h2><i className="fa fa-home" aria-hidden="true"></i> &nbsp; {local.nome} </h2>
+              <h2><i className="fa fa-home" aria-hidden="true"></i> &nbsp; <Link to="/detalhe" >{local.nome}</Link>  </h2>
 
               <p>
                 <i className="fa fa-file-text" aria-hidden="true"></i> &nbsp;

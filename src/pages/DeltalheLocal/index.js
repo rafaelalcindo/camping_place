@@ -3,6 +3,14 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 import { CampoImagem, Detalhes, CamposDetalhe } from './styles';
 
+// components
+import SliderComponent from '../../components/SliderComponent'
+
+// Imagens
+import camping_exemple1 from '../../assets/images/camping_exemple1.jpg'
+import camping_exemple2 from '../../assets/images/camping_exemple2.jpg'
+import camping_exemple3 from '../../assets/images/camping_exemple3.jpg'
+
 class DetalheLocal extends Component {
   state = {
     local: {
@@ -20,12 +28,28 @@ class DetalheLocal extends Component {
 
     const position = [-23.664187857779496, -46.77861255444456];
 
+    const imagens_exemplo = [
+      camping_exemple1,
+      camping_exemple2,
+      camping_exemple3,
+      camping_exemple3,
+      camping_exemple3,
+    ]
+
+    const settings = {
+
+      className: "center",
+      centerMode: true,
+      infinite: true,
+      centerPadding: "60px",
+      slidesToShow: 3,
+      speed: 500
+    };
+
     return (
       <Fragment>
         <div className="container">
-          {/* <CampoImagem>
-            <img src={this.state.local.imagem} />
-          </CampoImagem> */}
+
           <Detalhes>
 
             <CamposDetalhe>
@@ -56,8 +80,9 @@ class DetalheLocal extends Component {
             </CamposDetalhe>
           </Detalhes>
 
-
         </div>
+
+        <SliderComponent settings={settings} imagens={imagens_exemplo} />
 
       </Fragment>
     )

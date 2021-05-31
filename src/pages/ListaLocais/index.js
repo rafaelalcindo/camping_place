@@ -67,10 +67,18 @@ class ListaLocais extends Component {
       camping_exemple3
     ]
 
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
+
     return (
       <Fragment>
         <ModalComponent statuModal={this.state.openModal} funcOpen={() => this.openModal} >
-          <SliderComponent imagens={imagens_exemplo} />
+          <SliderComponent settings={settings} imagens={imagens_exemplo} />
         </ModalComponent>
 
         <MainLista>

@@ -8,18 +8,10 @@ export default class SliderComponent extends Component {
 
   render() {
 
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
-    };
-
     return (
-      <Slider {...settings}>
-        {this.props.imagens.map(imagem => (
-          <SliderDiv>
+      <Slider {...this.props.settings}>
+        {this.props.imagens.map((imagem, index) => (
+          <SliderDiv key={index} >
             <img src={imagem} />
         </SliderDiv>
         ))}
