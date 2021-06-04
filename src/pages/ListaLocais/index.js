@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import Slider from "react-slick";
+
+// components
+
 
 
 import { MainLista, CampoPesquisa, Form, CompoListagem, SliderDiv } from './styles'
@@ -7,6 +9,7 @@ import { MainLista, CampoPesquisa, Form, CompoListagem, SliderDiv } from './styl
 // Components
 import ListaCamp from '../../components/ListaCamp'
 import ModalComponent from '../../components/ModalComponent'
+import SliderComponent from '../../components/SliderComponent'
 
 // Imagens
 import camping_exemple1 from '../../assets/images/camping_exemple1.jpg'
@@ -53,12 +56,16 @@ class ListaLocais extends Component {
   }
 
   openModal = async () => {
-    // console.log('passou')
     this.setState({openModal: !this.state.openModal})
-    // console.log(this.state.openModal)
   }
 
   render() {
+
+    const imagens_exemplo = [
+      camping_exemple1,
+      camping_exemple2,
+      camping_exemple3
+    ]
 
     const settings = {
       dots: true,
@@ -71,17 +78,7 @@ class ListaLocais extends Component {
     return (
       <Fragment>
         <ModalComponent statuModal={this.state.openModal} funcOpen={() => this.openModal} >
-          <Slider {...settings}>
-            <SliderDiv>
-              <img src={camping_exemple1} />
-            </SliderDiv>
-            <SliderDiv>
-              <img src={camping_exemple2} />
-            </SliderDiv>
-            <SliderDiv>
-              <img src={camping_exemple3} />
-            </SliderDiv>
-          </Slider>
+          <SliderComponent settings={settings} imagens={imagens_exemplo} />
         </ModalComponent>
 
         <MainLista>

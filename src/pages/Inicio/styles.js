@@ -2,9 +2,14 @@ import styled from 'styled-components'
 
 export const TelaAmostragem = styled.section`
   min-height: 570px;
+  width: 100%;
   background: #391F14;
   display: flex;
   flex-direction: row;
+
+  @media (max-width: 448px) {
+    min-height: 200px;
+  }
 `
 export const EspacoAmostragem = styled.div`
   order: ${ props => props.order };
@@ -35,6 +40,8 @@ export const EspacoAmostragem = styled.div`
     margin-top: 9%;
     width: 40%;
     z-index: 3;
+
+
   }
 
   p {
@@ -46,6 +53,19 @@ export const EspacoAmostragem = styled.div`
     text-align: center !important;
   }
 
+  @media (max-width: 448px) {
+    height: 200px;
+
+    h1 {
+      font-size: 18px;
+    }
+
+    .backgroundTransparente {
+      width: 70%;
+      height: 200px;
+    }
+
+  }
 
 `
 
@@ -84,6 +104,15 @@ export const FaixaCor = styled.section`
     margin-left: 10px;
   }
 
+  @media (max-width: 448px) {
+    height: 200px;
+
+    .container p {
+      font-size: 25px;
+    }
+
+  }
+
 `
 
 export const Form = styled.form`
@@ -92,6 +121,7 @@ export const Form = styled.form`
   max-width: 400px;
   margin-left: -15%;
   display: flex;
+
 
   input {
     flex: 1;
@@ -103,6 +133,11 @@ export const Form = styled.form`
     color: #444;
     border-radius: 3px;
     outline: 0;
+
+
+    @media (max-width: 785px) {
+      width: 220px;
+    }
   }
 
   button {
@@ -120,6 +155,11 @@ export const Form = styled.form`
     &:hover {
       background: #ca714e;
     }
+  }
+
+  @media (max-width: 448px) {
+    margin-top: -90px;
+    margin-left: 0px;
   }
 `
 

@@ -29,6 +29,10 @@ export const CampoInfo = styled.section`
 
   padding-left: 30px;
   border-bottom: 1px solid rgba(128, 128, 128, 0.40);
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const CampoLocal = styled.section`

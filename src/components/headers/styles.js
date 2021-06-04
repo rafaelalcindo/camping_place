@@ -78,4 +78,61 @@ export const Header = styled.header`
     opacity: 0;
     transition: 0.4s;
   }
+
+  @media (min-width: 449px) {
+    .menu_baixo_screen {
+      display: none !important;
+    }
+    .menu_alto_screen {
+      display: initial !important;
+    }
+  }
+
+  @media (max-width: 448px) {
+    .menu_alto_screen {
+      display: none !important;
+    }
+
+    .menu_baixo_screen {
+      display: initial !important;
+    }
+  }
+`
+
+export const SideNav = styled.div`
+  height: 100%;
+  width: ${props => props.open? '200px' : '0px'};
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background-color: rgb(57,31,20);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+
+  a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffff;
+    display: block;
+    transition: 0.3s;
+
+    &:hover {
+      color: #FD8F5F !important;
+    }
+
+
+
+  }
+
+  .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+
 `

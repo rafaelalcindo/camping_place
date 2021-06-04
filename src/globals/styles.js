@@ -12,6 +12,21 @@ const GlobalStyle = createGlobalStyle`
   @media (min-width: 768px) {
     .container {
       width: 750px;
+
+    }
+  }
+
+  @media (max-width: 766px) {
+    .container {
+      width: 100%;
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      width: 750px;
     }
   }
   @media (min-width: 992px) {
