@@ -120,8 +120,6 @@ class ListaLocais extends Component {
                 <ListaCamp locais={this.state.locaisDisponiveis} abrirModal={() => this.openModal} />
               </CompoListagem>
 
-
-
           </div>
         </MainLista>
 

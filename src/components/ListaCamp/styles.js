@@ -10,11 +10,22 @@ export const Cardbody = styled.section`
   box-shadow: 1px 2px 15px 5px rgba(0,0,0,0.18);
 
   margin-bottom: 40px;
+
+  @media (max-width: 448px) {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 `;
 
 export const ImagemTitle = styled.img`
   height: 100%;
   width: 35%;
+
+  @media (max-width: 448px) {
+    height: 40%;
+    width: 100%;
+  }
 `;
 
 export const BodyInformation = styled.section`
@@ -22,6 +33,10 @@ export const BodyInformation = styled.section`
   flex-direction: column;
   height: 100%;
   width: 65%;
+
+  @media (max-width: 448px) {
+    width: 100%;
+  }
 `;
 
 export const CampoInfo = styled.section`
