@@ -25,7 +25,7 @@ const Routes = () => (
       <Switch>
         <Route exact path="/" component={Main} />
         <Route exact path="/locais" component={ListaLocais} />
-        <Route exact path="/detalhe" component={DetalheLocal} />
+        <Route exact path="/detalhe/:id" component={DetalheLocal} />
 
         <Route component={NotFound} />
       </Switch>

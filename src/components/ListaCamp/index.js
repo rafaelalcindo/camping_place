@@ -30,7 +30,7 @@ const ListaCamp = (props) => {
             <BodyInformation>
               <CampoInfo>
                 <section>
-                  <h2><i className="fa fa-home" aria-hidden="true"></i> &nbsp; <Link to="/detalhe" >{local.nome_local}</Link>  </h2>
+                  <h2><i className="fa fa-home" aria-hidden="true"></i> &nbsp; <Link to={`/detalhe/${local.id}`} >{local.nome_local}</Link>  </h2>
 
                   <p>
                     <i className="fa fa-file-text" aria-hidden="true"></i> &nbsp;
