@@ -1,4 +1,8 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as AcampamentoCreators } from '../../store/duck/acampamento';
+
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 import { CampoImagem, Detalhes, CamposDetalhe } from './styles';
@@ -12,6 +16,15 @@ import camping_exemple2 from '../../assets/images/camping_exemple2.jpg'
 import camping_exemple3 from '../../assets/images/camping_exemple3.jpg'
 
 class DetalheLocal extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  async componentDidMount() {
+    this.props.acampamentoRequest(this.props.match.params.id);
+  }
+
   state = {
     local: {
       imagem: 'https://cdnstatic8.com/festivalando.com.br/wp-content/uploads/2018/08/shutterstock_197684711-e1534359318455.jpg',
@@ -26,7 +39,7 @@ class DetalheLocal extends Component {
 
   render() {
 
-    const position = [-23.664187857779496, -46.77861255444456];
+    const position = this.props.acampamento.enderecos.latitude? [this.props.acampamento.enderecos.latitude, this.props.acampamento.enderecos.longitude] : null;
 
     const imagens_exemplo = [
       camping_exemple1,
@@ -35,6 +48,8 @@ class DetalheLocal extends Component {
       camping_exemple3,
       camping_exemple3,
     ]
+
+    // const imagens_exemplo = this.props.acampamento.anexos.map(anexo => `${imagemPath}${anexo.arquivo}`)
 
     const settings = {
 
@@ -46,6 +61,8 @@ class DetalheLocal extends Component {
       speed: 500
     };
 
+    console.tron.log(this.props)
+
     return (
       <Fragment>
         <div className="container">
@@ -54,28 +71,34 @@ class DetalheLocal extends Component {
 
             <CamposDetalhe>
               <ul>
-                <li> <h3> <i className="fa fa-home" aria-hidden="true"></i> &nbsp; {this.state.local.nome} </h3></li>
-                <li> <h3> <i className="fa fa-map-marker" aria-hidden="true"></i> &nbsp; {this.state.local.logradouro}, nº{this.state.local.numero} Cep: 23434-544 </h3></li>
-                <li> <h3> <i className="fa fa-map" aria-hidden="true"></i> &nbsp; {this.state.local.estado} </h3></li>
-                <li> <h3> <i className="fa fa-map" aria-hidden="true"></i> &nbsp; {this.state.local.cidade} </h3></li>
+                <li> <h3> <i className="fa fa-home" aria-hidden="true"></i> &nbsp; {this.props.acampamento.nome_local} </h3></li>
+                <li> <h3> <i className="fa fa-map-marker" aria-hidden="true"></i> &nbsp; {this.props.acampamento.enderecos.logradouro}, nº{this.props.acampamento.enderecos.numero} Cep: {this.props.acampamento.enderecos.cep}  </h3></li>
+                <li> <h3> <i className="fa fa-map" aria-hidden="true"></i> &nbsp; {this.props.acampamento.enderecos.estado} </h3></li>
+                <li> <h3> <i className="fa fa-map" aria-hidden="true"></i> &nbsp; {this.props.acampamento.enderecos.cidade} </h3></li>
 
 
-                <li> <h3> <i className="fa fa-file-text" aria-hidden="true"></i> &nbsp; {this.state.local.complemento} </h3></li>
+                <li> <h3> <i className="fa fa-file-text" aria-hidden="true"></i> &nbsp; {this.props.acampamento.descricao} </h3></li>
               </ul>
             </CamposDetalhe>
 
             <CamposDetalhe>
-                <MapContainer center={position} zoom={20} scrollWheelZoom={true}>
-                    <TileLayer
-                      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    <Marker position={position}>
-                      <Popup>
-                        O lugar é aqui
-                      </Popup>
-                    </Marker>
-                </MapContainer>
+                {
+                  position?
+                    <MapContainer center={position} zoom={16} scrollWheelZoom={true}>
+                        <TileLayer
+                          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        <Marker position={position}>
+                          <Popup>
+                            O lugar é aqui
+                          </Popup>
+                        </Marker>
+                    </MapContainer>
+                  :
+                  ''
+                }
+
 
             </CamposDetalhe>
           </Detalhes>
@@ -87,7 +110,12 @@ class DetalheLocal extends Component {
       </Fragment>
     )
   }
-
 }
 
-export default DetalheLocal;
+const mapStateToProps = state => ({
+  acampamento: state.acampamento
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators(AcampamentoCreators, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetalheLocal);
