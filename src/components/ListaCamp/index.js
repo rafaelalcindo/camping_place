@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { imagemPath } from '../../services/imagemPath';
 
 // styles
 import {
@@ -13,42 +14,52 @@ import {
 // assets
 import imageCard from '../../assets/images/imageCard.jpg'
 
-const ListaCamp = (props) => (
-  <div>
-    {props.locais.map(local => (
+const ListaCamp = (props) => {
+  console.tron.log(props);
+  return(
 
-      <Cardbody key={local.id} >
-        <ImagemTitle src={local.imagem} />
+    <div>
+      {
+        props.locais ?
 
-        <BodyInformation>
-          <CampoInfo>
-            <section>
-              <h2><i className="fa fa-home" aria-hidden="true"></i> &nbsp; <Link to="/detalhe" >{local.nome}</Link>  </h2>
+        props.locais.map(local => (
 
-              <p>
-                <i className="fa fa-file-text" aria-hidden="true"></i> &nbsp;
-                { local.complemento }
-              </p>
+          <Cardbody key={local.id} >
+            <ImagemTitle src={`${imagemPath}${local.foto_principal}`} />
 
-              <h4><i className="fa fa-map-marker" aria-hidden="true"></i> &nbsp; {local.logradouro}, nº{local.numero} Cep: 23434-544</h4>
-            </section>
-          </CampoInfo>
+            <BodyInformation>
+              <CampoInfo>
+                <section>
+                  <h2><i className="fa fa-home" aria-hidden="true"></i> &nbsp; <Link to="/detalhe" >{local.nome_local}</Link>  </h2>
 
-          <CampoLocal>
-            <h4> <i className="fa fa-map" aria-hidden="true"></i> &nbsp; {local.estado} </h4>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <h4> <i className="fa fa-map" aria-hidden="true"></i> &nbsp; {local.cidade} </h4>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <h4> <i className="fa fa-picture-o" aria-hidden="true"></i> &nbsp; <a onClick={props.abrirModal()} > Fotos </a> </h4>
-          </CampoLocal>
-        </BodyInformation>
+                  <p>
+                    <i className="fa fa-file-text" aria-hidden="true"></i> &nbsp;
+                    { local.descricao }
+                  </p>
 
-      </Cardbody>
+                  <h4><i className="fa fa-map-marker" aria-hidden="true"></i> &nbsp; {local.enderecos.logradouro}, nº{local.enderecos.numero} Cep: 23434-544</h4>
+                </section>
+              </CampoInfo>
 
-    ))}
-  </div>
+              <CampoLocal>
+                <h4> <i className="fa fa-map" aria-hidden="true"></i> &nbsp; {local.enderecos.estado} </h4>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <h4> <i className="fa fa-map" aria-hidden="true"></i> &nbsp; {local.enderecos.cidade} </h4>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <h4> <i className="fa fa-picture-o" aria-hidden="true"></i> &nbsp; <a onClick={() => props.abrirModal(local.anexos)} > Fotos </a> </h4>
+              </CampoLocal>
+            </BodyInformation>
+
+          </Cardbody>
+
+        ))
+        :
+        <h2>Sem registros</h2>
+    }
+    </div>
 
 
-);
+  );
+}
 
 export default ListaCamp;

@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as AcampamentosCreators } from '../../store/duck/acampamentos';
 
 // components
-
-
-
 import { MainLista, CampoPesquisa, Form, CompoListagem, SliderDiv } from './styles'
 
 // Components
@@ -16,56 +16,40 @@ import camping_exemple1 from '../../assets/images/camping_exemple1.jpg'
 import camping_exemple2 from '../../assets/images/camping_exemple2.jpg'
 import camping_exemple3 from '../../assets/images/camping_exemple3.jpg'
 
+// service
+import { imagemPath } from '../../services/imagemPath';
+
 class ListaLocais extends Component {
 
-  state = {
-    locaisDisponiveis: [
-      {
-        id: 1,
-        imagem: 'https://cdnstatic8.com/festivalando.com.br/wp-content/uploads/2018/08/shutterstock_197684711-e1534359318455.jpg',
-        nome: 'Chacara Bom Viver',
-        estado: 'São Paulo',
-        cidade: 'Juquitiba',
-        logradouro: 'Rua são silvestres',
-        numero: '234',
-        complemento: 'rua de cima Sitio muito bom para acampamento, tem area rústica e muito lugar pata todos bruncarem, tem piscina e lagos naturais, possui cachoeiras e trilha de 10km, possui barcos para brincadeiras'
-      },
-      {
-        id: 2,
-        imagem: 'https://cdnstatic8.com/festivalando.com.br/wp-content/uploads/2018/08/shutterstock_197684711-e1534359318455.jpg',
-        nome: 'Chacara Bom Viver',
-        estado: 'São Paulo',
-        cidade: 'Juquitiba',
-        logradouro: 'Rua são silvestres',
-        numero: '234',
-        complemento: 'rua de cima Sitio muito bom para acampamento, tem area rústica e muito lugar pata todos bruncarem, tem piscina e lagos naturais, possui cachoeiras e trilha de 10km, possui barcos para brincadeiras'
-      },
-      {
-        id: 3,
-        imagem: 'https://cdnstatic8.com/festivalando.com.br/wp-content/uploads/2018/08/shutterstock_197684711-e1534359318455.jpg',
-        nome: 'Chacara Bom Viver',
-        estado: 'São Paulo',
-        cidade: 'Juquitiba',
-        logradouro: 'Rua são silvestres',
-        numero: '234',
-        complemento: 'rua de cima Sitio muito bom para acampamento, tem area rústica e muito lugar pata todos bruncarem, tem piscina e lagos naturais, possui cachoeiras e trilha de 10km, possui barcos para brincadeiras'
-      }
-    ],
+  constructor(props) {
+      super(props);
 
-    openModal: false
+  }
+
+  async componentDidMount() {
+    this.props.acampamentosRequest(1)
+  }
+
+  state = {
+    openModal: false,
+    imagensModal: [
+      camping_exemple1,
+      camping_exemple2,
+      camping_exemple3
+    ]
   }
 
   openModal = async () => {
     this.setState({openModal: !this.state.openModal})
   }
 
-  render() {
+  imagemAnexos = async (anexos) => {
+    let imagens = anexos.map((anexo) => `${imagemPath}${anexo.arquivo}`)
+    this.setState({ imagensModal: imagens });
+    this.openModal();
+  }
 
-    const imagens_exemplo = [
-      camping_exemple1,
-      camping_exemple2,
-      camping_exemple3
-    ]
+  render() {
 
     const settings = {
       dots: true,
@@ -78,7 +62,7 @@ class ListaLocais extends Component {
     return (
       <Fragment>
         <ModalComponent statuModal={this.state.openModal} funcOpen={() => this.openModal} >
-          <SliderComponent settings={settings} imagens={imagens_exemplo} />
+          <SliderComponent settings={settings} imagens={this.state.imagensModal} />
         </ModalComponent>
 
         <MainLista>
@@ -117,7 +101,7 @@ class ListaLocais extends Component {
               <hr/>
 
               <CompoListagem>
-                <ListaCamp locais={this.state.locaisDisponiveis} abrirModal={() => this.openModal} />
+                <ListaCamp locais={this.props.acampamentos} abrirModal={this.imagemAnexos} />
               </CompoListagem>
 
           </div>
@@ -129,5 +113,23 @@ class ListaLocais extends Component {
   }
 }
 
-export default ListaLocais;
+const mapStateToProps = state => ({
+  acampamentos: state.acampamentos.acampamentos,
+
+  current_page: state.acampamentos.current_page,
+  first_page_url: state.acampamentos.first_page_url,
+  from: state.acampamentos.from,
+  last_page: state.acampamentos.last_page,
+  last_page_url: state.acampamentos.last_page_url,
+  next_page_url: state.acampamentos.next_page_url,
+  path: state.acampamentos.path,
+  per_page: state.acampamentos.per_page,
+  prev_page_url: state.acampamentos.prev_page_url,
+  to: state.acampamentos.to,
+  total: state.acampamentos.total
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators(AcampamentosCreators, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListaLocais);
 
