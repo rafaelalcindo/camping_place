@@ -8,12 +8,17 @@ export const CampoImagem = styled.section`
     width: 100%;
 
   }
+
 `;
 export const Detalhes = styled.section`
   display: flex;
   flex-direction: row;
   height: 600px;
 
+  @media (max-width: 448px) {
+    display: flex;
+    flex-direction: column;
+  }
 
 `;
 
@@ -32,5 +37,15 @@ export const CamposDetalhe = styled.div`
   .leaflet-container {
     width: 100%;
     height: 100%;
+  }
+
+  @media (max-width: 448px) {
+    width: 100%;
+
+    .leaflet-container {
+      width: 100%;
+      height: 270px;
+    }
+
   }
 `

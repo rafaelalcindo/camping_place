@@ -40,6 +40,10 @@ export const Form = styled.form`
     color: #444;
     border-radius: 3px;
     outline: 0;
+
+    @media (max-width: 448px) {
+      width: 55%;
+    }
   }
 
   button {
